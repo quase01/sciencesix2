@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-27T11:44:52.558Z",
+  "student": "자동 검증 연구원",
+  "stages": {
+    "1": {
+      "starts": 1,
+      "complete": true,
+      "seconds": 11
+    },
+    "2": {
+      "starts": 1,
+      "complete": true,
+      "seconds": 24
+    },
+    "3": {
+      "starts": 1,
+      "complete": true,
+      "seconds": 22
+    },
+    "4": {
+      "starts": 1,
+      "complete": true,
+      "seconds": 24
+    },
+    "5": {
+      "starts": 1,
+      "complete": true,
+      "seconds": 28
+    },
+    "6": {
+      "starts": 1,
+      "complete": true,
+      "seconds": 28
+    }
+  },
+  "questions": {
+    "1:mixing": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "2:light": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "2:heat": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "3:generator": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "3:compare": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "3:valve": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "3:final1": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "3:final2": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "4:match": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "4:thermo": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "4:triangle": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "4:final": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "5:water": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "5:gas": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "5:report": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "6:sort0": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "6:sort1": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "6:sort2": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "6:sort3": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "6:sort4": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "6:impact1": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "6:impact2": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "6:action0": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "6:action1": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "6:action2": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "6:final0": {
+      "attempts": 2,
+      "wrong": 1,
+      "solved": true,
+      "firstCorrect": false
+    },
+    "6:final1": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    },
+    "6:final2": {
+      "attempts": 1,
+      "wrong": 0,
+      "solved": true,
+      "firstCorrect": true
+    }
+  },
+  "helps": [],
+  "activities": []
+}

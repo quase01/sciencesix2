@@ -1,0 +1,54 @@
+{
+  "results": [
+    {
+      "stage": 1,
+      "requiredComplete": true,
+      "bonusUsed": false
+    },
+    {
+      "stage": 2,
+      "requiredComplete": true,
+      "bonusUsed": false
+    },
+    {
+      "stage": 3,
+      "requiredComplete": true,
+      "bonusUsed": false
+    },
+    {
+      "stage": 4,
+      "requiredComplete": true,
+      "bonusUsed": false
+    },
+    {
+      "stage": 5,
+      "requiredComplete": true,
+      "bonusUsed": false
+    },
+    {
+      "stage": 6,
+      "requiredComplete": true,
+      "bonusUsed": false
+    }
+  ],
+  "solvedQuestions": 28,
+  "wrongAttempts": 13,
+  "downloads": [
+    {
+      "id": "exportJSON",
+      "name": "불꽃연구소_학습기록_자동_검증_연구원.json",
+      "bytes": 3834
+    },
+    {
+      "id": "exportCSV",
+      "name": "불꽃연구소_개인리포트_자동_검증_연구원.csv",
+      "bytes": 3694
+    },
+    {
+      "id": "saveCertificate",
+      "name": "불꽃연구소_지구수호자_인증서_자동_검증_연구원.png",
+      "bytes": 1027947
+    }
+  ],
+  "errors": []
+}

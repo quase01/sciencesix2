@@ -1,0 +1,10 @@
+{
+  "partialExperiment": true,
+  "items": true,
+  "answers": true,
+  "wrongAttempts": true,
+  "bonusPuzzle": true,
+  "stageReturn": true,
+  "character": true,
+  "errors": []
+}

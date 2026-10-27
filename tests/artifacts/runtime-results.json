@@ -1,0 +1,26 @@
+[
+  {
+    "mode": "mobile",
+    "errors": [],
+    "externalRequests": 0,
+    "passed": true
+  },
+  {
+    "mode": "missing-images",
+    "errors": [],
+    "externalRequests": 0,
+    "passed": true
+  },
+  {
+    "mode": "storage-denied",
+    "errors": [],
+    "externalRequests": 0,
+    "passed": true
+  },
+  {
+    "mode": "standalone",
+    "errors": [],
+    "externalRequests": 0,
+    "passed": true
+  }
+]

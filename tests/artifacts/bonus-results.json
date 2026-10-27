@@ -1,0 +1,47 @@
+{
+  "results": [
+    {
+      "stage": 1,
+      "entered": true,
+      "solved": true,
+      "reward": true,
+      "returned": true
+    },
+    {
+      "stage": 2,
+      "entered": true,
+      "solved": true,
+      "reward": true,
+      "returned": true
+    },
+    {
+      "stage": 3,
+      "entered": true,
+      "solved": true,
+      "reward": true,
+      "returned": true
+    },
+    {
+      "stage": 4,
+      "entered": true,
+      "solved": true,
+      "reward": true,
+      "returned": true
+    },
+    {
+      "stage": 5,
+      "entered": true,
+      "solved": true,
+      "reward": true,
+      "returned": true
+    },
+    {
+      "stage": 6,
+      "entered": true,
+      "solved": true,
+      "reward": true,
+      "returned": true
+    }
+  ],
+  "errors": []
+}

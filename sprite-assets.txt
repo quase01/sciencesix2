@@ -1,0 +1,17 @@
+캐릭터 스프라이트 작업 기록
+
+현재 게임은 교차 보행을 수정한 character1-walk.png와 character2-walk.png를 사용합니다.
+최신 생성 프롬프트와 재생 방식은 walking-assets.txt에 기록되어 있습니다.
+아래 내용은 최초 투명 배경 사본을 만들었을 때의 기록입니다.
+
+원본: character1.png, character2.png (원본 유지)
+게임용 사본: character1-transparent.png, character2-transparent.png
+도구: 내장 image_gen (transparent_background: true)
+프레임: 방향별 6개, 오른쪽 / 왼쪽 / 위 / 아래 순서.
+소스 그림의 간격이 균일하지 않아 characters.js에서 프레임별 범위를 지정하고 발 위치와 표시 높이를 맞춥니다.
+
+character1-transparent.png 최종 프롬프트:
+Use case: background-extraction. Edit target: the supplied male character sprite sheet. Remove ONLY the brown/gray gradient background, making it actual alpha transparency. Preserve all 24 original character sprites, every pose, clothing, face, hair, backpack, details, outline, and position as exactly as possible. Output same 1536 x 1024 landscape sheet with exactly 6 columns and 4 rows, each 256 x 256 cell. Row 1 right-facing, row 2 left-facing, row 3 back/up-facing, row 4 front/down-facing. No rearrangement, no new characters, no text, no ground shadows, no cropping feet or hair. This is an in-game animation sheet requiring exact preserved grid.
+
+character2-transparent.png 최종 프롬프트:
+Use case: precise-object-edit and background-extraction. Create a GAME-READY transparent sprite atlas from the attached female sprite sheet. Keep exactly the same 24 original female character poses and appearance; do not redesign. The original characters overlap the nominal 256px cell boundaries. Fix this layout: output 1536x1024 exactly, SIX columns FOUR rows of 256x256 cells. Scale each complete character to 232px tall maximum, center it horizontally INSIDE its own cell with feet at cell y=244. Entire ponytail, feet, and all details must stay inside its cell with at least 10px transparent margins on every edge. Row1 all six facing RIGHT, row2 LEFT, row3 BACK/UP, row4 FRONT/DOWN. Row3 back sprites must be separated from row4 front sprites, never touching. Remove brown background fully, use real alpha transparency. No text, grid lines, shadows, extra sprites, missing sprites or rectangular background. Each sprite is standalone isolated. Preserve original six different walk poses in each direction.

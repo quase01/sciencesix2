@@ -1,0 +1,56 @@
+{
+  "results": [
+    {
+      "stage": 1,
+      "wallBlocked": true,
+      "closedGates": true,
+      "follower": true,
+      "fog": false,
+      "modalInput": true
+    },
+    {
+      "stage": 2,
+      "wallBlocked": true,
+      "closedGates": true,
+      "follower": true,
+      "fog": true,
+      "modalInput": true
+    },
+    {
+      "stage": 3,
+      "wallBlocked": true,
+      "closedGates": true,
+      "follower": true,
+      "fog": true,
+      "modalInput": true
+    },
+    {
+      "stage": 4,
+      "wallBlocked": true,
+      "closedGates": true,
+      "follower": true,
+      "fog": true,
+      "modalInput": true
+    },
+    {
+      "stage": 5,
+      "wallBlocked": true,
+      "closedGates": true,
+      "follower": true,
+      "fog": true,
+      "modalInput": true
+    },
+    {
+      "stage": 6,
+      "wallBlocked": true,
+      "closedGates": true,
+      "follower": true,
+      "fog": true,
+      "modalInput": true
+    }
+  ],
+  "teacherImport": true,
+  "classCSV": true,
+  "originalQuestionCatalogUnchanged": true,
+  "errors": []
+}

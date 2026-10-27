@@ -1,0 +1,27 @@
+/* The native dialog keeps game controls inactive while choosing a character. */
+body.choosing-character{overflow:hidden}
+.character-picker{width:min(620px,calc(100% - 28px));max-height:calc(100dvh - 28px);margin:auto;padding:30px;border:1px solid #657f99;border-radius:24px;background:radial-gradient(ellipse at top,#304b65,#16253c 75%);color:var(--text);box-shadow:0 24px 100px #020914b3;text-align:center;overflow-y:auto}
+.character-picker::backdrop{background:#060e20e6;backdrop-filter:blur(8px)}
+.character-picker h2{font-size:30px;letter-spacing:-1px;margin:8px 0}
+.character-picker h2 em{color:var(--gold);font-style:normal}
+.character-intro{color:#bdcfe1;font-size:13px;line-height:1.8}
+.character-options{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 16px}
+.character-card{display:flex;flex-direction:column;align-items:center;position:relative;min-width:0;padding:15px 12px;border:2px solid #405875;border-radius:17px;background:#1b2e47;color:#eaf5ff;transition:border-color .15s,background .15s,transform .15s}
+.character-card:hover{border-color:#8dabc6;transform:translateY(-2px)}
+.character-card[aria-pressed="true"]{border-color:var(--teal);background:linear-gradient(155deg,#294e57,#21374c);box-shadow:0 0 0 3px #5be0c915}
+.character-card[data-character="girl"][aria-pressed="true"]{border-color:#ffb5c9;background:linear-gradient(155deg,#52405e,#29364d);box-shadow:0 0 0 3px #ffb5c915}
+.character-badge{font-size:10px;font-weight:850;letter-spacing:1px;color:#adc4db;align-self:flex-start}
+.character-card canvas{display:block;width:min(176px,100%);height:auto;aspect-ratio:1;filter:drop-shadow(0 8px 8px #030c204d)}
+.character-card strong{font-size:17px}
+.character-card small{font-size:11px;color:#b8cddd;margin-top:4px}
+.character-choice{font-size:11px;color:#a8bfd5;min-height:20px;margin-top:12px}
+.character-card[aria-pressed="true"] .character-choice{color:#c4ffeb;font-weight:900}
+.character-card[data-character="girl"][aria-pressed="true"] .character-choice{color:#ffd4df}
+.character-status{font-size:12px;color:#c5d9e7;min-height:22px;margin-bottom:13px}
+.character-picker .primary-btn{width:100%;max-width:360px}
+.character-picker .primary-btn:disabled{opacity:.45;cursor:wait;transform:none}
+.character-help{font-size:11px;color:#96adc5;margin-top:17px}
+.character-change{display:block;margin:14px auto 0;border:1px solid #70869c;border-radius:9px;padding:7px 12px;background:#1c2e43;color:#d8f4f1;font-size:11px;font-weight:750}
+@media(max-width:530px){.character-picker{padding:22px 16px;border-radius:19px}.character-picker h2{font-size:25px}.character-options{gap:10px;margin:16px 0 12px}.character-card{padding:12px 8px}.character-card canvas{width:140px;max-width:100%}.character-card strong{font-size:15px}.character-card small{font-size:10px}.character-intro{font-size:12px}.character-help{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.character-card{transition:none}.character-card:hover{transform:none}}
+@media(max-width:530px){.start-overlay{position:fixed;inset:0;z-index:110;overflow-y:auto}.start-overlay .start-panel{max-height:calc(100dvh - 30px);overflow-y:auto}}
