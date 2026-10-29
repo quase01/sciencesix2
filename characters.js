@@ -87,6 +87,7 @@
   }
 
   function open() {
+    if (window.FireLabIntro?.isOpen()) return;
     if (dialog.open) return;
     returnFocus = document.activeElement;
     pending = selected || pending;
@@ -101,7 +102,7 @@
     dialog.close();
     document.body.classList.remove('choosing-character');
     cancelAnimationFrame(previewRequest);previewRequest = 0;
-    const target = returnFocus?.matches('button') ? returnFocus : document.getElementById('startBtn');
+    const target = returnFocus?.matches('button') && !returnFocus.closest('#introScreen') ? returnFocus : document.getElementById('startBtn');
     target.focus({ preventScroll: true });
   }
 
@@ -145,6 +146,7 @@
   window.FireLabCharacter = {
     open,
     ensureSelected() {
+      if (window.FireLabIntro?.isOpen()) return false;
       if (selected && (characters[selected].ready||characters[selected].error) && !dialog.open) return true;
       open();return false;
     },
@@ -180,5 +182,6 @@
     getSnapshot: () => ({ selected, pending, open: dialog.open, ready: !!characters[selected]?.ready })
   };
   Object.values(characters).forEach(load);
-  open();
+  if (window.FireLabIntro) window.FireLabIntro.open();
+  else open();
 })();

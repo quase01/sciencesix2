@@ -1,7 +1,7 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist');fs.mkdirSync(out,{recursive:true});
 let html=fs.readFileSync(path.join(root,'index.html'),'utf8');
-const assets={},files=['character1-walk.png','character2-walk.png',...fs.readdirSync(path.join(root,'props')).filter(f=>f.endsWith('.png')).map(f=>'props/'+f)];
+const assets={},files=['intro.png','character1-walk.png','character2-walk.png',...fs.readdirSync(path.join(root,'props')).filter(f=>f.endsWith('.png')).map(f=>'props/'+f)];
 for(const f of files)assets[f]='data:image/png;base64,'+fs.readFileSync(path.join(root,f)).toString('base64');
 html=html.replace('</head>','<script>window.FireLabAssets='+JSON.stringify(assets)+';</script>\n</head>');
 html=html.replace(/<link rel="stylesheet" href="([^"\s]+)"\s*\/?>/g,(_,f)=>'<style>\n'+fs.readFileSync(path.join(root,f),'utf8')+'\n</style>');

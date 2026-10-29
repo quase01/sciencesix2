@@ -198,8 +198,19 @@
 
 </style>
 <link rel="stylesheet" href="characters.css" />
+<link rel="stylesheet" href="intro.css" />
 </head>
-<body>
+<body class="intro-pending">
+<dialog id="introScreen" class="intro-screen" aria-labelledby="introTitle" aria-describedby="introDescription">
+  <h1 id="introTitle" class="intro-sr-only">불꽃 연구소 탈출 대작전</h1>
+  <p id="introDescription" class="intro-sr-only">6학년 과학 2단원, 물질의 연소. 실험하고 탐험하며 연구소를 탈출해요. 탐험 시작하기를 누르면 함께할 캐릭터를 선택할 수 있어요.</p>
+  <div class="intro-art">
+    <img id="introArtwork" width="1672" height="941" alt="" decoding="async" fetchpriority="high" />
+    <div class="intro-fallback" aria-hidden="true"><span>SCIENCE LAB · ESCAPE</span><h2>불꽃 연구소<br><em>탈출 대작전</em></h2><p>나만의 연구원을 골라 과학 모험을 시작해요.</p></div>
+    <button type="button" id="introStart" class="intro-cta intro-cta-primary" aria-controls="characterPicker"><span class="intro-sr-only">탐험 시작하기 →</span></button>
+    <button type="button" id="introChoose" class="intro-cta intro-cta-secondary" aria-controls="characterPicker"><span class="intro-sr-only">캐릭터 선택</span></button>
+  </div>
+</dialog>
 <dialog id="characterPicker" class="character-picker" aria-labelledby="characterTitle" aria-describedby="characterIntro">
   <div class="eyebrow">SCIENCE LAB · CHOOSE YOUR EXPLORER</div>
   <h2 id="characterTitle">함께 탐험할 <em>캐릭터 선택</em></h2>
@@ -594,6 +605,7 @@
 <script src="world-renderer.js"></script>
 <script src="rpg.js"></script>
 <script src="bonus-rooms.js"></script>
+<script src="intro.js"></script>
 <script src="characters.js"></script>
 <script>
 /*
