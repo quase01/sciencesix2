@@ -275,8 +275,126 @@ def notes(inspected):
     K.sphere("Feather", (0.355, -0.07, 0.6), (0.025, 0.012, 0.07), K.principled("#f6f3ea", 0.6))
 
 
+# ================================================================ Fire-out puzzle
+# Fires block the maze until the right condition of combustion is removed.
+# Frame 0 = burning, frame 1 = extinguished (the tile becomes walkable).
+def scorch(r=0.3):
+    K.cyl("Scorch", (0, 0, 0.004), r, 0.008, K.principled("#2a1d1a", 0.95), verts=24)
+
+
+def fire_cluster(points):
+    """Several stacked flames read as one fire at sprite size."""
+    for i, (x, y, z, s) in enumerate(points):
+        K.flame(f"Fire{i}", (x, y, z), s, outer="#ff7a1f" if i % 2 else "#ff9a3a")
+
+
+def smoke(points):
+    m = K.principled("#b9b2aa", 0.8, emit="#b9b2aa", emit_str=0.15)
+    for i, (x, y, z, r) in enumerate(points):
+        K.sphere(f"Smoke{i}", (x, y, z), r, m, segs=12)
+
+
+def fire_lamp(out):
+    """Knocked-over alcohol lamp: put out by covering it (cut off oxygen)."""
+    scorch(0.34)
+    G = K.glass("#f3e3c8")
+    brass = K.principled(BRASS, 0.35, 0.8)
+    if out:
+        K.cyl("Lamp", (-0.05, 0.04, 0.06), 0.09, 0.12, G, 0.02)
+        K.cyl("Fuel", (-0.05, 0.04, 0.035), 0.08, 0.05, K.principled("#b8d9e8", 0.1))
+        K.cyl("Neck", (-0.05, 0.04, 0.13), 0.035, 0.03, brass)
+        K.cyl("Cap", (-0.05, 0.04, 0.175), 0.05, 0.07, brass, 0.01)  # the lid smothers the flame
+        K.sphere("FireBlanket", (0.14, -0.06, 0.03), (0.17, 0.12, 0.04), K.principled("#c9b48a", 0.9))
+        smoke([(0.12, -0.06, 0.14, 0.04), (0.15, -0.05, 0.22, 0.05)])
+    else:
+        lamp = K.cyl("Lamp", (0, 0, 0), 0.09, 0.12, G, 0.02, rot=(0, math.radians(90), math.radians(20)))
+        lamp.location = (-0.17, 0.08, 0.09)
+        K.cyl("Neck", (-0.07, 0.04, 0.09), 0.035, 0.05, brass, rot=(0, math.radians(90), math.radians(20)))
+        K.sphere("Spill", (0.08, -0.04, 0.008), (0.26, 0.17, 0.01), K.principled("#6f9fc8", 0.05, emit="#5f8fd8", emit_str=0.25))
+        fire_cluster([(0.03, -0.02, 0.0, 3.6), (0.16, -0.06, 0.0, 3.0), (-0.07, -0.08, 0.0, 2.6), (0.1, 0.07, 0.0, 2.8), (0.23, 0.02, 0.0, 2.2)])
+
+
+def fire_gas(out):
+    """Leaking gas pipe: put out by closing the valve (remove the fuel)."""
+    scorch(0.26)
+    pipe = K.principled("#e8c040", 0.4, 0.4)
+    K.box("Floorplate", (0, 0.12, 0.02), (0.22, 0.1, 0.02), K.principled(IRON, 0.6, 0.5), 0.008)
+    K.cyl("PipeRun", (0, 0.16, 0.08), 0.045, 0.44, pipe, rot=(0, math.radians(90), 0))
+    K.cyl("Riser", (0.02, 0.1, 0.16), 0.045, 0.16, pipe)
+    K.cyl("Flange", (0.02, 0.1, 0.25), 0.065, 0.025, K.principled(IRON, 0.5, 0.6))
+    K.cyl("BrokenTip", (0.02, 0.1, 0.28), 0.04, 0.04, K.principled("#8a7a5a", 0.6, 0.4), r2=0.03)
+    for x in (-0.18, 0.18):
+        K.box(f"Bracket{x}", (x, 0.16, 0.05), (0.02, 0.05, 0.05), K.principled(IRON, 0.6))
+    K.box("Warn", (-0.13, 0.205, 0.14), (0.05, 0.004, 0.04), K.principled("#f2c14e", 0.5))
+    if out:
+        smoke([(0.03, 0.1, 0.36, 0.035)])
+    else:  # tall jet flame with a blue core
+        K.sphere("JetCore", (0.02, 0.1, 0.38), (0.03, 0.03, 0.1), K.glow("#7fb8ff", 3.0), segs=14)
+        fire_cluster([(0.02, 0.1, 0.28, 4.2), (0.06, 0.08, 0.3, 3.0), (-0.03, 0.12, 0.29, 2.8)])
+
+
+def fire_wood(out):
+    """Burning woodpile: put out with water (cool it below the ignition point)."""
+    scorch(0.36)
+    log = K.principled("#2a1d18", 0.9) if out else K.principled("#7a4a2a", 0.85)
+    ember = K.principled("#3a2420", 0.9) if out else K.principled("#c8501f", 0.5, emit="#ff5a1a", emit_str=1.5)
+    for i, a in enumerate((0, 60, 120)):
+        K.cyl(f"Log{i}", (0, 0, 0.05 + i * 0.03), 0.045, 0.5, log, 0.01, rot=(0, math.radians(90), math.radians(a)))
+    K.cyl("Embers", (0, 0, 0.03), 0.16, 0.03, ember)
+    for i, (x, y) in enumerate(((-0.24, 0.12), (0.26, 0.1), (0.2, -0.15))):
+        K.sphere(f"Stone{i}", (x, y, 0.03), (0.06, 0.05, 0.04), K.principled("#6a6058", 0.8))
+    if out:
+        K.sphere("Puddle", (0.02, -0.04, 0.006), (0.3, 0.2, 0.008), K.principled("#5aa8d8", 0.05, emit="#5aa8d8", emit_str=0.3))
+        steam = K.principled("#f2f6f8", 0.7, emit="#e8f0f4", emit_str=0.4)
+        for i, (x, z, r) in enumerate(((-0.05, 0.2, 0.05), (0.06, 0.28, 0.06), (-0.02, 0.38, 0.05))):
+            K.sphere(f"Steam{i}", (x, 0.0, z), r, steam, segs=12)
+    else:
+        fire_cluster([(0.0, 0.0, 0.1, 3.6), (0.1, -0.04, 0.08, 2.6), (-0.11, 0.03, 0.08, 2.6), (0.03, 0.08, 0.09, 2.2), (-0.04, -0.08, 0.07, 2.0)])
+
+
+def gas_valve(closed):
+    """Gas shut-off valve on a wall pipe. Lever along the pipe = open, across the pipe = closed."""
+    pipe = K.principled("#e8c040", 0.4, 0.4)
+    K.box("Wall", (0, 0.2, 0.32), (0.3, 0.04, 0.3), K.principled("#986b52", 0.8), 0.01)
+    K.cyl("PipeIn", (-0.15, 0.12, 0.32), 0.04, 0.3, pipe, rot=(0, math.radians(90), 0))
+    K.cyl("PipeOut", (0.15, 0.12, 0.32), 0.04, 0.3, pipe, rot=(0, math.radians(90), 0))
+    K.box("Body", (0, 0.1, 0.32), (0.07, 0.06, 0.07), K.principled("#c08a3a", 0.4, 0.6), 0.02)
+    K.cyl("Stem", (0, 0.05, 0.32), 0.015, 0.06, K.principled(IRON, 0.4, 0.7), rot=(math.radians(90), 0, 0))
+    lever = K.principled("#e0302a", 0.4) if closed else K.principled("#3aa860", 0.4)
+    rot = (math.radians(90), 0, 0) if closed else (0, math.radians(90), 0)
+    K.box("Lever", (0, 0.0, 0.32), (0.14, 0.02, 0.02), lever, 0.008, rot=(0, 0, 0) if not closed else (0, math.radians(90), 0))
+    K.box("Tag", (0.18, 0.06, 0.48), (0.06, 0.006, 0.035), K.principled("#e0302a" if closed else "#f2c14e", 0.5))
+    K.box("Base", (0, 0.12, 0.02), (0.3, 0.12, 0.02), K.principled(IRON, 0.6, 0.5), 0.008)
+    K.sphere("Lamp", (-0.2, 0.15, 0.55), 0.03, lamp_mat(closed, "#ff6a3a"))
+
+
+def water_tank(taken):
+    """Firefighting water tank with a bucket under the tap."""
+    tank = K.principled("#3a6fa8", 0.4, 0.4)
+    K.cyl("Tank", (-0.08, 0.06, 0.28), 0.2, 0.5, tank, 0.03)
+    K.cyl("TankTop", (-0.08, 0.06, 0.54), 0.21, 0.03, K.principled("#c4d0dc", 0.3, 0.8))
+    K.torus("Band1", (-0.08, 0.06, 0.15), 0.205, 0.012, K.principled("#c4d0dc", 0.3, 0.8))
+    K.torus("Band2", (-0.08, 0.06, 0.4), 0.205, 0.012, K.principled("#c4d0dc", 0.3, 0.8))
+    K.box("Label", (-0.08, -0.14, 0.3), (0.1, 0.006, 0.06), K.principled("#e0302a", 0.5))
+    K.box("LabelMark", (-0.08, -0.148, 0.3), (0.06, 0.003, 0.012), K.principled("#ffffff", 0.5))
+    K.rod("Tap", (0.1, 0.0, 0.18), (0.22, -0.02, 0.18), 0.02, K.principled("#c4d0dc", 0.3, 0.8))
+    K.cyl("Spout", (0.22, -0.02, 0.15), 0.018, 0.06, K.principled("#c4d0dc", 0.3, 0.8))
+    if taken:  # bucket carried away; tap still dripping
+        K.sphere("Drip", (0.22, -0.02, 0.06), (0.012, 0.012, 0.018), K.principled("#7fc8f0", 0.05, emit="#7fc8f0", emit_str=0.8))
+        K.cyl("Ring", (0.24, -0.05, 0.004), 0.08, 0.006, K.principled("#5aa8d8", 0.1))
+    else:
+        K.cyl("Bucket", (0.24, -0.05, 0.06), 0.085, 0.12, K.principled("#e0583c", 0.5), r2=0.07)
+        K.cyl("BucketWater", (0.24, -0.05, 0.115), 0.075, 0.01, K.principled("#5aa8d8", 0.05, emit="#5aa8d8", emit_str=0.6))
+        K.torus("Handle", (0.24, -0.05, 0.13), 0.08, 0.006, K.principled("#c4d0dc", 0.3, 0.8), rot=(math.radians(90), 0, 0))
+
+
+FILES.update({"fire_lamp": "s4-fire-lamp", "fire_gas": "s4-fire-gas", "fire_wood": "s4-fire-wood",
+              "gas_valve": "s4-gas-valve", "water_tank": "s4-water-tank"})
+
 BUILDERS = {"match": match, "thermo": thermo, "triangle": triangle, "final": final,
-            "sign": sign, "lift": lift, "cooler": cooler, "notes": notes}
+            "sign": sign, "lift": lift, "cooler": cooler, "notes": notes,
+            "fire_lamp": fire_lamp, "fire_gas": fire_gas, "fire_wood": fire_wood,
+            "gas_valve": gas_valve, "water_tank": water_tank}
 
 if __name__ == "__main__":
     argv = sys.argv[sys.argv.index("--") + 1:]
